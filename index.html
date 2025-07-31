@@ -3,202 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <title>Tabla de Evaluación</title>
-  <style>
-    body {
-      background: #f7f8fa;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      padding: 32px 24px;
-    }
-    h2 {
-      text-align: center;
-      font-size: 2em;
-      margin-bottom: 12px;
-      color: #222;
-      letter-spacing: 1px;
-    }
-    p {
-      text-align: center;
-      font-size: 1.08em;
-      color: #444;
-      margin-bottom: 18px;
-    }
-    p img {
-      vertical-align: middle;
-      margin-right: 6px;
-      width: 22px;
-      height: 22px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 28px;
-      background: #fafbfc;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    th, td {
-      padding: 14px 10px;
-      text-align: left;
-      font-size: 1em;
-    }
-    th {
-      background: #e9eef3;
-      color: #222;
-      font-weight: 600;
-      border-bottom: 2px solid #dbe2ea;
-    }
-    td {
-      border-bottom: 1px solid #e3e7ed;
-    }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    select {
-      width: 140px;
-      padding: 7px 8px;
-      border-radius: 6px;
-      border: 1px solid #cfd8e3;
-      background: #fff;
-      font-size: 1em;
-      transition: border 0.2s;
-      outline: none;
-    }
-    select:focus {
-      border-color: #4CAF50;
-      background: #f3fff3;
-    }
-    #result {
-      padding: 18px;
-      font-weight: bold;
-      font-size: 1.5em;
-      text-align: center;
-      color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      margin-bottom: 10px;
-      transition: background 0.3s;
-      letter-spacing: 1px;
-    }
-    /* Colores dinámicos para el resultado */
-    #result.bg-red    { background: #f44336; }
-    #result.bg-yellow { background: #ff9800; }
-    #result.bg-green  { background: #4CAF50; }
-    /* Responsive */
-    @media (max-width: 600px) {
-      main {
-        padding: 12px 4px;
-      }
-      table, th, td {
-        font-size: 0.95em;
-      }
-      select {
-        width: 100%;
-      }
-    }
-  </style>
+  <!-- Fuente moderna recomendada -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <!-- CSS externo profesional -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main>
-<h2 class="elementor-heading-title elementor-size-default">Tabla de Análisis de Productos para Testeo</h2>
-<p>Para empezar a usar la tabla, <strong>debes ir seleccionando si el producto que estás analizando «si cumple» o «no cumple» con los criterios de evaluación.</strong> Al final de la tabla verás el porcentaje de viabilidad de testeo:</p>
-<p>
-  <img alt="🔴" src="https://s.w.org/images/core/emoji/16.0.1/svg/1f534.svg"> No hay viabilidad <br>
-  <img alt="🟡" src="https://s.w.org/images/core/emoji/16.0.1/svg/1f7e1.svg"> Poca probabilidad <br>
-  <img alt="🟢" src="https://s.w.org/images/core/emoji/16.0.1/svg/1f7e2.svg"> Viable para testeo
-</p>
+  <h2 class="elementor-heading-title elementor-size-default">Tabla de Análisis de Productos para Testeo</h2>
+  <p>Para empezar a usar la tabla, <strong>debes ir seleccionando si el producto que estás analizando «si cumple» o «no cumple» con los criterios de evaluación.</strong> Al final de la tabla verás el porcentaje de viabilidad de testeo:</p>
+  <p>
+    <img alt="🔴" src="https://s.w.org/images/core/emoji/16.0.1/svg/1f534.svg"> No hay viabilidad <br>
+    <img alt="🟡" src="https://s.w.org/images/core/emoji/16.0.1/svg/1f7e1.svg"> Poca probabilidad <br>
+    <img alt="🟢" src="https://s.w.org/images/core/emoji/16.0.1/svg/1f7e2.svg"> Viable para testeo
+  </p>
 
-<table id="evaluation-table">
-  <thead>
-    <tr>
-      <th>Criterio de Evaluación</th>
-      <th>¿Cumple?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <script>
-      const criterios = [
-        "El producto no es difícil de transportar",
-        "El producto genera recompra",
-        "El producto es para una audiencia amplia",
-        "El producto resuelve una necesidad, problema o complejo",
-        "Buena percepción de valor",
-        "Producto de pasión, temporada o creencia",
-        "No necesita combo inicial para venderse",
-        "Posibilidad de combos futuros",
-        "Potencial para construir marca",
-        "Coherente con la identidad del negocio",
-        "Cumple lo que promete",
-        "Que no sea fácil de conseguir (No está en el D1, Ara o DollarCity)",
-        "Proveedor verificado",
-        "El proveedor responde",
-        "Más de 100 unidades en stock",
-        "Máximo 5 proveedores en Dropi",
-        "Máximo 2 tiendas vendiéndolo",
-        "Rentabilidad mínima del 20%",
-        "Utilidad mínima de $10,000",
-        "Disponibilidad de creativos (videos o imágenes)",
-        "Ángulos de venta claros y diferenciados"
-      ];
+  <table id="evaluation-table">
+    <thead>
+      <tr>
+        <th>Criterio de Evaluación</th>
+        <th>¿Cumple?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <script>
+        const criterios = [
+          "El producto no es difícil de transportar",
+          "El producto genera recompra",
+          "El producto es para una audiencia amplia",
+          "El producto resuelve una necesidad, problema o complejo",
+          "Buena percepción de valor",
+          "Producto de pasión, temporada o creencia",
+          "No necesita combo inicial para venderse",
+          "Posibilidad de combos futuros",
+          "Potencial para construir marca",
+          "Coherente con la identidad del negocio",
+          "Cumple lo que promete",
+          "Que no sea fácil de conseguir (No está en el D1, Ara o DollarCity)",
+          "Proveedor verificado",
+          "El proveedor responde",
+          "Más de 100 unidades en stock",
+          "Máximo 5 proveedores en Dropi",
+          "Máximo 2 tiendas vendiéndolo",
+          "Rentabilidad mínima del 20%",
+          "Utilidad mínima de $10,000",
+          "Disponibilidad de creativos (videos o imágenes)",
+          "Ángulos de venta claros y diferenciados"
+        ];
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const tbody = document.querySelector("#evaluation-table tbody");
-        criterios.forEach((criterio, index) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${criterio}</td>
-            <td>
-              <select onchange="calculatePercentage()">
-                <option value="">Selecciona...</option>
-                <option value="1">Sí cumple</option>
-                <option value="0">No cumple</option>
-              </select>
-            </td>
-          `;
-          tbody.appendChild(row);
+        document.addEventListener("DOMContentLoaded", () => {
+          const tbody = document.querySelector("#evaluation-table tbody");
+          criterios.forEach((criterio, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${criterio}</td>
+              <td>
+                <select onchange="calculatePercentage()">
+                  <option value="">Selecciona...</option>
+                  <option value="1">Sí cumple</option>
+                  <option value="0">No cumple</option>
+                </select>
+              </td>
+            `;
+            tbody.appendChild(row);
+          });
         });
+      </script>
+    </tbody>
+  </table>
+
+  <div id="result" class="bg-red">0%</div>
+
+  <script>
+    function calculatePercentage() {
+      const selects = document.querySelectorAll("#evaluation-table select");
+      let total = selects.length;
+      let sum = 0;
+      selects.forEach(sel => {
+        if (sel.value === "1") {
+          sum += 1;
+        }
       });
-    </script>
-  </tbody>
-</table>
+      let percentage = Math.round((sum / total) * 100);
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerText = percentage + "%";
 
-<div id="result" class="bg-red">0%</div>
-
-<script>
-  function calculatePercentage() {
-    const selects = document.querySelectorAll("#evaluation-table select");
-    let total = selects.length;
-    let sum = 0;
-    selects.forEach(sel => {
-      if (sel.value === "1") {
-        sum += 1;
+      resultDiv.classList.remove("bg-red", "bg-yellow", "bg-green");
+      if (percentage <= 40) {
+        resultDiv.classList.add("bg-red");
+      } else if (percentage <= 79) {
+        resultDiv.classList.add("bg-yellow");
+      } else {
+        resultDiv.classList.add("bg-green");
       }
-    });
-    let percentage = Math.round((sum / total) * 100);
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerText = percentage + "%";
-
-    resultDiv.classList.remove("bg-red", "bg-yellow", "bg-green");
-    if (percentage <= 40) {
-      resultDiv.classList.add("bg-red");
-    } else if (percentage <= 79) {
-      resultDiv.classList.add("bg-yellow");
-    } else {
-      resultDiv.classList.add("bg-green");
     }
-  }
-  // Inicializa color al cargar
-  window.onload = calculatePercentage;
-</script>
+    // Inicializa color al cargar
+    window.onload = calculatePercentage;
+  </script>
 </main>
 </body>
 </html>
